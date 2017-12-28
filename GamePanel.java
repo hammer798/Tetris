@@ -18,6 +18,8 @@ public class GamePanel extends JPanel {
 	private CanvasPanel canvas;
 	private JLabel scoreLabel;
 	private int score = 0;
+	private int time = 1000;
+	private int modulo = 1000;
 	private Timer timer;
 	
 	//constructor, organizes panel, initializes variables
@@ -66,7 +68,7 @@ public class GamePanel extends JPanel {
 			
 			//start timer, runs TetrisTask every second
 			timer = new Timer();
-			timer.schedule(new TetrisTask(), 1000, 1000);
+			timer.schedule(new TetrisTask(), time, time);
 			
 			//add key listener if not already added
 			KeyListener[] list = getListeners(KeyListener.class);
@@ -232,6 +234,16 @@ public class GamePanel extends JPanel {
 			}
 			//checks rows after piece is deactivated and gets next piece
 			checkRows();
+			if(score % modulo == 0 && score != 0 && time > 500)
+			{
+				modulo += 1000;
+				time -= 100;
+				timer.cancel();
+				timer = new Timer();
+				timer.schedule(new TetrisTask(), time, time);
+				System.out.println("new time =" + time);
+			}
+			
 			nextPiece();
 		}
 		// if the user has lost, stop the game and tell the user their score
@@ -260,3 +272,4 @@ public class GamePanel extends JPanel {
 		}
 	}//end TetrisTask
 }//end GamePanel
+
