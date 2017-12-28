@@ -126,6 +126,23 @@ public class GamePanel extends JPanel {
 		public void keyReleased(KeyEvent k) {}
 	}//end of ControlKeys
 	
+	//sort ArrayList from least to greatest
+	public ArrayList<Integer> sort(ArrayList<Integer> array) {
+		if(array != null) {
+			for(int x = 0; x < array.size(); x ++)
+			{
+				for(int y = 1; y < array.size(); y++) {
+					if(array.get(x) > array.get(y)) {
+						int temp = array.get(y);
+						array.set(y, array.get(x));
+						array.set(x, temp);
+					}
+				}
+			}
+		}
+		return array;
+
+	}
 	//checkRows checks if a row is filled, deletes the row if it is
 	public void checkRows()
 	{
@@ -151,6 +168,9 @@ public class GamePanel extends JPanel {
 					toBeDeleted.add(p.y);	
 			}
 		}
+		//sort toBeDeleted
+		toBeDeleted = sort(toBeDeleted);
+		
 		//deletes the rows
 		for(int x = 0; x < toBeDeleted.size(); x ++)
 			deleteRow(toBeDeleted.get(x));
