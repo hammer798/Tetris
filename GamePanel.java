@@ -241,7 +241,6 @@ public class GamePanel extends JPanel {
 				timer.cancel();
 				timer = new Timer();
 				timer.schedule(new TetrisTask(), time, time);
-				System.out.println("new time =" + time);
 			}
 			
 			nextPiece();
