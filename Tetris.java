@@ -1,9 +1,4 @@
-
-//Assignment: Honors Contract - Tetris
-//Name: Ian Bradley
-//ASU ID: 1213339060
-//Lecture: T Th 4:30
-//Description: 
+//Tetris
 
 import javax.swing.*;
 import javax.swing.Timer;
